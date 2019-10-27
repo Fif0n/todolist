@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    background: #ddd;
+    font-family: sans-serif;
+}
+.container-fluid{
+    margin:0;
+    padding: 0;   
+}
+header{
+    background: rgb(39, 74, 88);
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+}
+.jumbotron{
+    width: 70%;
+    margin: auto;
+}
