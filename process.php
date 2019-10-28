@@ -2,6 +2,7 @@
 
     class Todo {
         protected $conn;
+        public $error;
         
         // public function __construct(){
             
