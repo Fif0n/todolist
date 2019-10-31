@@ -4,7 +4,7 @@
         protected $conn;
         protected $action = '';
         private $sql;
-        private $users = array();
+        private $todo = array();
         private $row;
         public static $result = array('error'=>false);
        
@@ -40,11 +40,11 @@
         public function read(){
             if($this->action == 'read'){
                 $this->sql = $this->conn->query("SELECT * FROM todo");
-                $this->users = array();
+                $this->todo = array();
                 while($this->row = $this->sql->fetch_assoc()){
-                    array_push($this->users, $this->row);
+                    array_push($this->todo, $this->row);
                 }
-                Todo::$result['users'] = $this->users;
+                Todo::$result['todo'] = $this->todo;
             }
         }
 

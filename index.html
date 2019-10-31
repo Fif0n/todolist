@@ -24,10 +24,16 @@
                     <input type="text" name="title" class="form-control" placeholder="What's you need to do...">
                 </form>
                 <div class="todo-list">
-                    <div class="single-todo">
-                        <!-- <hr>walew weqfdwq</hr>
-                        <span class="float-right">&times;</span> -->
-                    </div>
+                    <b-container class="bv-example-row todo-list" v-for="todo in todos">
+                        <b-row class="text-center">
+                            <b-col><input type="checkbox" name="compleated" class="checkbox"></b-col>
+                            <b-col cols="8">
+                                <div class="single-todo">
+                                    {{ todo.title }}
+                                </div>
+                            </b-col>
+                            <b-col class="x">&times;</b-col>
+                    </b-row>
                 </div>
                 <hr class="my-4">
                 

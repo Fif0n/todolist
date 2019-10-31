@@ -17,3 +17,20 @@ header{
     width: 70%;
     margin: auto;
 }
+.todo-list{
+    background: #ccc;
+    border: #999 solid 1px;
+    padding:0 ;
+    font-size:22px;
+}
+.single-todo{
+    padding:5px;
+}
+.x {
+    display:block;
+    cursor: pointer;
+    padding:10px;
+}
+.checkbox{
+    margin:2    0px;
+}
