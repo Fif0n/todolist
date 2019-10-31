@@ -6,12 +6,12 @@
         private $sql;
         private $users = array();
         private $row;
-        public static $result;
-        private $title;
-        private $id;
+        public static $result = array('error'=>false);
+       
         // public function __construct(){
             
         // }
+
         public function connect(){
             $this->conn = mysqli_connect('localhost', 'fifon', 'test1234', 'todo_list');
 
@@ -21,37 +21,62 @@
 
 
         }
+
+        public function createTable(){
+            $this->sql = $this->conn->query("CREATE TABLE IF NOT EXISTS todo (
+                id int NOT NULL AUTO_INCREMENT,
+                title varchar(255) NOT NULL,
+                compleated int NOT NULL,
+                PRIMARY KEY (id)
+                );");
+        }
+
         public function get(){
             if(isset($_GET['action'])){
                 $this->action = $_GET['action'];
             }
         }
+
         public function read(){
             if($this->action == 'read'){
                 $this->sql = $this->conn->query("SELECT * FROM todo");
+                $this->users = array();
                 while($this->row = $this->sql->fetch_assoc()){
                     array_push($this->users, $this->row);
                 }
-                return Todo::$result['users'] = $this->users;
+                Todo::$result['users'] = $this->users;
             }
         }
+
         public function create(){
-            
-            
             if($this->action == 'create'){
-                $this->title = $_POST['title'];
-                $this->sql = $this->conn->query("INSERT INTO todo (title) values('$this->title')");
+                $title = $_POST['title'];
+                
+                $this->sql = $this->conn->query("INSERT INTO todo (title) values('$title')");
                 
             }
         }
+
         public function delete(){
-            
-           
             if($this->action == 'delete'){
-                $this->id = $_POST['id'];
-                $this->sql = $this->conn->query("DELETE FROM todo WHERE id='$this->id'");
+                $id = $_POST['id'];
+                $this->sql = $this->conn->query("DELETE FROM todo WHERE id='$id'");
             }
         }
+
+        public function makeCompleated(){
+            if($this->action == 'compleated'){
+                $id = $_POST['id'];
+                $this->sql = $this->conn->query("UPDATE todo SET compleated = 1 WHERE id='$id'");
+            }
+        }
+
+        public function deleteCopleated(){
+            if($this->action == 'deleteC'){
+                $this->sql = $this->conn->query("DELETE FROM todo WHERE compleated = 1");
+            }
+        }
+
         public function close_conn(){
             $this->conn->close();
         }
@@ -59,10 +84,13 @@
 
     $todoOne = new Todo();
     echo $todoOne->connect();
+    $todoOne->createTable();
     $todoOne->get();
     $todoOne->read();
     $todoOne->create();
     $todoOne->delete();
+    $todoOne->makeCompleated();
+    $todoOne->deleteCopleated();
     echo json_encode(Todo::$result);
     $todoOne->close_conn();
 
