@@ -7,7 +7,8 @@ var app = new Vue({
         id: "",
         title: "",
         compleated: ""
-      }
+      },
+      currentTodo: {}
     },
 
     mounted: function(){
@@ -32,6 +33,10 @@ var app = new Vue({
         } return fd;
       },
 
+      selectTodo(todo){
+        app.currentTodo = todo;
+      },
+
       addTodo(){
         var formData = app.toFormData(app.newTodo);
         axios.post("http://localhost/todolist/process.php?action=create", formData)
@@ -44,6 +49,21 @@ var app = new Vue({
             app.getTodos();
           }
         });
+      },
+
+      deleteTodo(){
+        var formData = app.toFormData(app.currentTodo);
+        axios.post("http://localhost/todolist/process.php?action=delete", formData)
+        .then(function(response){
+          app.currentTodo = {};
+          app.getTodos();
+          if(response.data.error){
+            app.errorMsg = respones.data.message;
+          } else {
+            app.getTodos();
+          }
+        });
+        
       }
 
     },

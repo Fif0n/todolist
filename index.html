@@ -35,7 +35,7 @@
                                     {{ todo.title }}
                                 </div>
                             </b-col>
-                            <b-col class="x">&times;</b-col>
+                            <b-col class="x" @click="selectTodo(todo); deleteTodo();">&times;</b-col>
                         </b-row>
                 </div>
                 <hr class="my-4">
