@@ -2,7 +2,6 @@ var app = new Vue({
   el: '#app',
     data: {
       errorMsg: "",
-      successMsg: "",
       todos: [],
       newTodo: {
         id: "",
@@ -10,9 +9,11 @@ var app = new Vue({
         compleated: ""
       }
     },
+
     mounted: function(){
       this.getTodos();
     },
+
     methods: {
       getTodos(){
         axios.get("http://localhost/todolist/process.php?action=read")
@@ -23,7 +24,28 @@ var app = new Vue({
             app.todos = response.data.todo;
           }
         });
+      },
+      toFormData(obj){
+        var fd = new FormData();
+        for(var i in obj){
+          fd.append(i,obj[i]);
+        } return fd;
+      },
+
+      addTodo(){
+        var formData = app.toFormData(app.newTodo);
+        axios.post("http://localhost/todolist/process.php?action=create", formData)
+        .then(function(response){
+          app.newTodo = {id: "", title: "", compleated: 0};
+          app.getTodos();
+          if(response.data.error){
+            app.errorMsg = respones.data.message;
+          } else {
+            app.getTodos();
+          }
+        });
       }
+
     },
 
     computed: {

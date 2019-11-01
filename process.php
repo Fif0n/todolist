@@ -51,7 +51,6 @@
         public function create(){
             if($this->action == 'create'){
                 $title = $_POST['title'];
-                
                 $this->sql = $this->conn->query("INSERT INTO todo (title) values('$title')");
                 
             }
