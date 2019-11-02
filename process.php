@@ -70,7 +70,14 @@
             }
         }
 
-        public function deleteCopleated(){
+        public function makeUnCompleated(){
+            if($this->action == 'makeU'){
+                $id = $_POST['id'];
+                $this->sql = $this->conn->query("UPDATE todo SET compleated = 0 WHERE id='$id'");
+            }
+        }
+
+        public function deleteCompleated(){
             if($this->action == 'deleteC'){
                 $this->sql = $this->conn->query("DELETE FROM todo WHERE compleated = 1");
             }
@@ -89,7 +96,8 @@
     $todoOne->create();
     $todoOne->delete();
     $todoOne->makeCompleated();
-    $todoOne->deleteCopleated();
+    $todoOne->makeUnCompleated();
+    $todoOne->deleteCompleated();
     echo json_encode(Todo::$result);
     $todoOne->close_conn();
 

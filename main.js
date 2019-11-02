@@ -64,6 +64,34 @@ var app = new Vue({
           }
         });
         
+      },
+
+      makeCompleated(){
+        var formData = app.toFormData(app.currentTodo);
+        axios.post("http://localhost/todolist/process.php?action=compleated", formData)
+        .then(function(response){
+          app.currentTodo = {};
+          app.getTodos();
+          if(response.data.error){
+            app.errorMsg = respones.data.message;
+          } else {
+            app.getTodos();
+          }
+        });
+      },
+
+      makeUnCompleated(){
+        var formData = app.toFormData(app.currentTodo);
+        axios.post("http://localhost/todolist/process.php?action=makeU", formData)
+        .then(function(response){
+          app.currentTodo = {};
+          app.getTodos();
+          if(response.data.error){
+            app.errorMsg = respones.data.message;
+          } else {
+            app.getTodos();
+          }
+        });
       }
 
     },

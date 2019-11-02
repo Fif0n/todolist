@@ -29,7 +29,9 @@
                 <div class="todo-list">
                     <b-container class="bv-example-row todo-list" v-for="todo in todos">
                         <b-row class="text-center">
-                            <b-col><input type="checkbox" name="compleated" class="checkbox"></b-col>
+                            <b-col><input type="checkbox" name="compleated" class="checkbox" @click="selectTodo(todo); makeCompleated()" v-show="!app.currentTodo == '0'">
+                                <input type="checkbox" name="compleated" class="checkbox" @click="selectTodo(todo); makeUnCompleated()">
+                            </b-col>
                             <b-col cols="8">
                                 <div class="single-todo">
                                     {{ todo.title }}
