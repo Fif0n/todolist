@@ -29,7 +29,7 @@
                 <div class="todo-list">
                     <b-container class="bv-example-row todo-list" v-for="todo in todos">
                         <b-row class="text-center">
-                            <b-col><input type="checkbox" name="compleated" class="checkbox" @click="selectTodo(todo); makeCompleated()" v-show="!app.currentTodo == '0'">
+                            <b-col><input type="checkbox" name="compleated" class="checkbox" @click="selectTodo(todo); makeCompleated()">
                                 <input type="checkbox" name="compleated" class="checkbox" @click="selectTodo(todo); makeUnCompleated()">
                             </b-col>
                             <b-col cols="8">
@@ -47,7 +47,7 @@
                     <button type="button" class="btn btn-success">Active</button>
                     <button type="button" class="btn btn-warning">Done</button>
                 </div>
-                <button type="button" class="btn btn-danger float-right">Clear done</button>
+                <button type="button" class="btn btn-danger float-right" @click="clearCompleate()">Clear done</button>
             </div>
         </div>
     </div>

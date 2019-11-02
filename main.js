@@ -92,6 +92,17 @@ var app = new Vue({
             app.getTodos();
           }
         });
+      },
+      clearCompleate(){
+        axios.post("http://localhost/todolist/process.php?action=deleteC")
+        .then(function(response){
+          app.getTodos();
+          if(response.data.error){
+            app.errorMsg = respones.data.message;
+          } else {
+            app.getTodos();
+          }
+        });
       }
 
     },
