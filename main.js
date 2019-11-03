@@ -8,7 +8,8 @@ var app = new Vue({
         title: "",
         compleated: ""
       },
-      currentTodo: {}
+      currentTodo: {},
+      filter: 'all'
     },
 
     mounted: function(){
@@ -103,12 +104,12 @@ var app = new Vue({
             app.getTodos();
           }
         });
-      }
+      },
 
     },
 
     computed: {
-
+      
     }
   
 })

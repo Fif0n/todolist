@@ -14,7 +14,7 @@
 <body>
 
     <div id="app">
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <header>
                 <h1 class="text-center text-muted">Todolist</h1>
             </header>
@@ -29,11 +29,12 @@
                 <div class="todo-list">
                     <b-container class="bv-example-row todo-list" v-for="todo in todos">
                         <b-row class="text-center">
-                            <b-col><input type="checkbox" name="compleated" class="checkbox" @click="selectTodo(todo); makeCompleated()">
-                                <input type="checkbox" name="compleated" class="checkbox" @click="selectTodo(todo); makeUnCompleated()">
+                            <b-col>
+                                <b-button size="sm" class="btn-success" @click="selectTodo(todo); makeCompleated()" v-if="todo.compleated == 0">&#10004;</b-button>
+                                <b-button size="sm" class="btn-danger" @click="selectTodo(todo); makeUnCompleated()" v-if="todo.compleated == 1">&times;</b-button>
                             </b-col>
                             <b-col cols="8">
-                                <div class="single-todo">
+                                <div class="single-todo" :class="{ strike: todo.compleated == 1, completed : todo.completed}">
                                     {{ todo.title }}
                                 </div>
                             </b-col>
@@ -43,11 +44,12 @@
                 <hr class="my-4">
                 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">All</button>
-                    <button type="button" class="btn btn-success">Active</button>
-                    <button type="button" class="btn btn-warning">Done</button>
+                    <button type="button" class="btn btn-primary" :class="{ active: filter == 'all' }" @click="filter = 'all'">All</button>
+                    <button type="button" class="btn btn-success" :class="{ active: filter == 'active' }" @click="filter = 'active'">Active</button>
+                    <button type="button" class="btn btn-warning" :class="{ active: filter == 'completed' }" @click="filter = 'completed'">Compleated</button>
                 </div>
-                <button type="button" class="btn btn-danger float-right" @click="clearCompleate()">Clear done</button>
+                <!-- v-if="todo.compleated == 1" -->
+                <button type="button" class="btn btn-danger float-right" @click="clearCompleate()">Clear compleated</button>
             </div>
         </div>
     </div>

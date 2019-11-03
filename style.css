@@ -34,3 +34,7 @@ header{
 .checkbox{
     margin:2    0px;
 }
+.strike {
+    text-decoration: line-through;
+    color: #888
+}
