@@ -21,8 +21,8 @@
             <div class="jumbotron">
                 <form action="#" method="post">
                     <b-input-group prepend="Todo" class="mt-3">
-                            <input type="text" name="title" class="form-control" v-model="newTodo.title" placeholder="What's you need to do...">
-                            <b-button @click="addTodo()" class="button">Add</b-button>
+                            <input type="text" name="title" class="form-control" v-model="newTodo.title" @keydown.enter="addTodo()" placeholder="What's you need to do...">
+                            <b-button @keyup.enter="addTodo()">Add</b-button>
                         </b-input-group-append>
                     </b-input-group>
                 </form>

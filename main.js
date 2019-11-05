@@ -1,7 +1,6 @@
 var app = new Vue({
   el: '#app',
     data: {
-      errorMsg: "",
       todos: [],
       newTodo: {
         id: "",
@@ -37,9 +36,9 @@ var app = new Vue({
       addTodo(){
         var formData = app.toFormData(app.newTodo);
         axios.post("http://localhost/todolist/process.php?action=create", formData)
-        .then(function(response){
-          app.newTodo = {id: "", title: "", compleated: 0};
-          app.getTodos();
+        .then(function(){
+            app.newTodo = {id: "", title: "", compleated: 0};
+            app.getTodos();
         });
       },
 
