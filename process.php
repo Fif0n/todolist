@@ -8,9 +8,6 @@
         private $row;
         public static $result = array('error'=>false);
        
-        // public function __construct(){
-            
-        // }
 
         public function connect(){
             $this->conn = mysqli_connect('localhost', 'fifon', 'test1234', 'todo_list');

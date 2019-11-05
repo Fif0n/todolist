@@ -20,11 +20,7 @@ var app = new Vue({
       getTodos(){
         axios.get("http://localhost/todolist/process.php?action=read")
         .then(function(response){
-          if(response.data.error){
-            app.errorMsg = respones.data.message;
-          } else {
-            app.todos = response.data.todo;
-          }
+          app.todos = response.data.todo;
         });
       },
       toFormData(obj){
@@ -44,25 +40,15 @@ var app = new Vue({
         .then(function(response){
           app.newTodo = {id: "", title: "", compleated: 0};
           app.getTodos();
-          if(response.data.error){
-            app.errorMsg = respones.data.message;
-          } else {
-            app.getTodos();
-          }
         });
       },
 
       deleteTodo(){
         var formData = app.toFormData(app.currentTodo);
         axios.post("http://localhost/todolist/process.php?action=delete", formData)
-        .then(function(response){
+        .then(function(){
           app.currentTodo = {};
           app.getTodos();
-          if(response.data.error){
-            app.errorMsg = respones.data.message;
-          } else {
-            app.getTodos();
-          }
         });
         
       },
@@ -70,39 +56,24 @@ var app = new Vue({
       makeCompleated(){
         var formData = app.toFormData(app.currentTodo);
         axios.post("http://localhost/todolist/process.php?action=compleated", formData)
-        .then(function(response){
+        .then(function(){
           app.currentTodo = {};
           app.getTodos();
-          if(response.data.error){
-            app.errorMsg = respones.data.message;
-          } else {
-            app.getTodos();
-          }
         });
       },
 
       makeUnCompleated(){
         var formData = app.toFormData(app.currentTodo);
         axios.post("http://localhost/todolist/process.php?action=makeU", formData)
-        .then(function(response){
+        .then(function(){
           app.currentTodo = {};
           app.getTodos();
-          if(response.data.error){
-            app.errorMsg = respones.data.message;
-          } else {
-            app.getTodos();
-          }
         });
       },
       clearCompleate(){
         axios.post("http://localhost/todolist/process.php?action=deleteC")
-        .then(function(response){
+        .then(function(){
           app.getTodos();
-          if(response.data.error){
-            app.errorMsg = respones.data.message;
-          } else {
-            app.getTodos();
-          }
         });
       },
 
