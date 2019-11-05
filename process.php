@@ -10,13 +10,11 @@
        
 
         public function connect(){
-            $this->conn = mysqli_connect('localhost', 'fifon', 'test1234', 'todo_list');
+            $this->conn = mysqli_connect('localhost', 'root', '', 'todo_list');
 
             if(!$this->conn){
                 echo 'Connection error: ' . mysqli_connect_error();
             }
-
-
         }
 
         public function createTable(){

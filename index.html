@@ -30,10 +30,10 @@
                     <b-container class="bv-example-row todo-list" v-for="todo in todos">
                         <b-row class="text-center">
                             <b-col>
-                                <b-button size="sm" class="btn-success" @click="selectTodo(todo); makeCompleated()" v-if="todo.compleated == 0">&#10004;</b-button>
+                                <b-button size="sm" class="btn-success btn" @click="selectTodo(todo); makeCompleated()" v-if="todo.compleated == 0">&#10004;</b-button>
                                 <b-button size="sm" class="btn-danger" @click="selectTodo(todo); makeUnCompleated()" v-if="todo.compleated == 1">&times;</b-button>
                             </b-col>
-                            <b-col cols="8">
+                            <b-col cols="10">
                                 <div class="single-todo" :class="{ strike: todo.compleated == 1, completed : todo.completed}">
                                     {{ todo.title }}
                                 </div>
