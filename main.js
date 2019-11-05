@@ -35,10 +35,14 @@ var app = new Vue({
 
       addTodo(){
         var formData = app.toFormData(app.newTodo);
+        if(this.newTodo.title.trim().length == 0){
+          return
+        }
         axios.post("http://localhost/todolist/process.php?action=create", formData)
         .then(function(){
             app.newTodo = {id: "", title: "", compleated: 0};
             app.getTodos();
+          
         });
       },
 

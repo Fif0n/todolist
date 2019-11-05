@@ -18,11 +18,12 @@
             <header>
                 <h1 class="text-center text-muted">Todolist</h1>
             </header>
+            {{ newTodo }}
             <div class="jumbotron">
                 <form action="#" method="post">
                     <b-input-group prepend="Todo" class="mt-3">
                             <input type="text" name="title" class="form-control" v-model="newTodo.title" @keydown.enter="addTodo()" placeholder="What's you need to do...">
-                            <b-button @keyup.enter="addTodo()">Add</b-button>
+                            <b-button @click="addTodo()">Add</b-button>
                         </b-input-group-append>
                     </b-input-group>
                 </form>
