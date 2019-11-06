@@ -78,6 +78,29 @@
             }
         }
 
+        public function filterActive(){
+            if($this->action == 'factive'){
+                $this->sql = $this->conn->query("SELECT * FROM todo WHERE compleated = 0");
+                $this->todo = array();
+                while($this->row = $this->sql->fetch_assoc()){
+                    array_push($this->todo, $this->row);
+                }
+                Todo::$result['todo'] = $this->todo;
+            }
+        }
+
+        public function filterCompleated(){
+            if($this->action == 'fcompleated'){
+                $this->sql = $this->conn->query("SELECT * FROM todo WHERE compleated = 1");
+                $this->todo = array();
+                while($this->row = $this->sql->fetch_assoc()){
+                    array_push($this->todo, $this->row);
+                }
+                Todo::$result['todo'] = $this->todo;
+            }
+        }
+
+
         public function close_conn(){
             $this->conn->close();
         }
@@ -93,6 +116,8 @@
     $todoOne->makeCompleated();
     $todoOne->makeUnCompleated();
     $todoOne->deleteCompleated();
+    $todoOne->filterActive();
+    $todoOne->filterCompleated();
     echo json_encode(Todo::$result);
     $todoOne->close_conn();
 

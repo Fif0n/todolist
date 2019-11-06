@@ -79,10 +79,32 @@ var app = new Vue({
           app.getTodos();
         });
       },
+      filterAll(){     
+          app.getTodos();
+      },
+      filterActive(){
+        axios.post("http://localhost/todolist/process.php?action=factive")
+        .then(function(response){
+          app.todos = response.data.todo;
+        });
+      },
 
+      filterCompleated(){
+        axios.post("http://localhost/todolist/process.php?action=fcompleated")
+        .then(function(response){
+          app.todos = response.data.todo;
+          
+          
+        });
+      }
+      
     },
 
     computed: {
+      
+      
+      
+      
       
     }
   
