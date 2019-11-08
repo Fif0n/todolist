@@ -16,10 +16,10 @@
     <div id="app">
         <div class="container-fluid" >
             <header>
-                <h1 class="text-center text-muted">Todolist</h1>
+                <h1 class="text-center text-info">Todolist</h1>
             </header>
             <div class="jumbotron">
-                <form action="#" method="post">
+                <form method="post">
                     <b-input-group prepend="Todo" class="mt-3">
                             <input type="text" name="title" class="form-control" v-model="newTodo.title" @keydown.enter="addTodo()" placeholder="What's you need to do...">
                             <b-button @click="addTodo()">Add</b-button>
