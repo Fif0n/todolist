@@ -44,9 +44,9 @@
                 <hr class="my-4">
                 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary" @click="filterAll()">All</button>
-                    <button type="button" class="btn btn-success" @click="filterActive()">Active</button>
-                    <button type="button" class="btn btn-warning" @click="filterCompleated()">Compleated</button>
+                    <button type="button" class="btn btn-primary" :class="{ active: filter == 'all' }" @click="filterAll(); filter = 'all'">All</button>
+                    <button type="button" class="btn btn-success" :class="{ active: filter == 'active' }" @click="filterActive(); filter = 'active'">Active</button>
+                    <button type="button" class="btn btn-warning" :class="{ active: filter == 'completed' }" @click="filterCompleated(); filter = 'completed'">Compleated</button>
                 </div>
                 <button type="button" class="btn btn-danger float-right" @click="clearCompleate()">Clear compleated</button>
             </div>
